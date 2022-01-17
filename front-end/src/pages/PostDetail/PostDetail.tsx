@@ -15,6 +15,12 @@ const PostDetail = () => {
       .then((res) => res.json())
       .then((data) => setPost(data));
   }, []);
+
+  const deletePost = () => {
+    fetch(`http://localhost:5000/api/post/${path}`, { method: "DELETE" })
+      .then(() => alert("해당 글이 삭제되었습니다!"))
+      .then(() => navigate("/"));
+  };
   console.log(post);
   return (
     <div className="post-detail">
@@ -33,7 +39,7 @@ const PostDetail = () => {
         </div>
         <div className="section-post">
           <button>수정</button>
-          <button>삭제</button>
+          <button onClick={deletePost}>삭제</button>
           <button onClick={() => navigate("/")}>목록으로</button>
         </div>
       </div>

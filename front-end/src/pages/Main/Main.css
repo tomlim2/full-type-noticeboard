@@ -6,9 +6,13 @@
   align-items: center;
 }
 
+.main button {
+  cursor: pointer;
+}
+
 .card {
   display: grid;
-  grid-template-rows: 80px 360px 50px;
+  grid-template-rows: 100px 360px 50px;
   width: 50%;
   border: solid 4px black;
   border-radius: 20px;

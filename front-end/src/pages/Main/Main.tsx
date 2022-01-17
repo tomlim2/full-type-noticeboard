@@ -19,6 +19,7 @@ const Main = () => {
       <div className="card">
         <div className="section-board">
           <h2>게시판</h2>
+          <button>글쓰기</button>
         </div>
         <div className="section-board">
           <ul className="post-list">
