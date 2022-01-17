@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PostItem from "./PostItem";
 import Card from "../../components/Card";
 import "./Main.css";
@@ -8,6 +9,7 @@ const limit = 3;
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/api/post")
@@ -19,7 +21,7 @@ const Main = () => {
     <Card>
       <div className="section-board">
         <h2>게시판</h2>
-        <button>글쓰기</button>
+        <button onClick={() => navigate("post/add")}>글쓰기</button>
       </div>
       <div className="section-board">
         <ul className="post-list">

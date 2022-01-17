@@ -10,7 +10,7 @@ const SinglePost = () => {
   const navigate = useNavigate();
   const path =
     location.pathname.split("/")[location.pathname.split("/").length - 1];
-  console.log(location);
+
   useEffect(() => {
     fetch(`http://localhost:5000/api/post/${path}`)
       .then((res) => res.json())
@@ -25,7 +25,7 @@ const SinglePost = () => {
       .then(() => alert("해당 글이 삭제되었습니다!"))
       .then(() => navigate("/"));
   };
-  console.log(post);
+  
   return (
     <Card>
       <div className="section-post header">

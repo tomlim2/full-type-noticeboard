@@ -1,0 +1,25 @@
+.section-add-post {
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.section-add-post:nth-child(1) {
+  border-bottom: 4px solid black;
+}
+
+.section-add-post label {
+  display: inline-block;
+  padding: 10px 0;
+}
+
+.section-add-post .title-input,
+.section-add-post .content-input {
+  width: 100%;
+  padding: 5px;
+}
+
+.section-add-post .content-input {
+  height: 208px;
+  margin-bottom: 10px;
+  resize: none;
+}
