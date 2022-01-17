@@ -8,8 +8,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="post" element={<PostDetail />}>
-        </Route>
+        <Route path="post/:id" element={<PostDetail />}></Route>
       </Routes>
     </BrowserRouter>
   );

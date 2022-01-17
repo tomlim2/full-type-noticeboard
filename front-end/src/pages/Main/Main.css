@@ -8,7 +8,7 @@
 
 .card {
   display: grid;
-  grid-template-rows: 80px 320px 50px;
+  grid-template-rows: 80px 360px 50px;
   width: 50%;
   background-color: lightcyan;
 }
