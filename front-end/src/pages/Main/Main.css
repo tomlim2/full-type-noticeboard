@@ -10,14 +10,16 @@
   display: grid;
   grid-template-rows: 80px 360px 50px;
   width: 50%;
-  background-color: lightcyan;
+  border: solid 4px black;
+  border-radius: 20px;
+  background-color: white;
 }
 
-.card .section:nth-child(1) {
+.card .section-board:nth-child(1) {
   text-align: center;
 }
 
-.card .section:nth-last-child(1) {
+.card .section-board:nth-last-child(1) {
   text-align: center;
 }
 

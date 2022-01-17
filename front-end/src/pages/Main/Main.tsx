@@ -17,10 +17,10 @@ const Main = () => {
   return (
     <div className="main">
       <div className="card">
-        <div className="section">
+        <div className="section-board">
           <h2>게시판</h2>
         </div>
-        <div className="section">
+        <div className="section-board">
           <ul className="post-list">
             {posts.length === 0 && <p>등록된 데이터가 없습니다.</p>}
             {posts.length > 0 &&
@@ -31,7 +31,7 @@ const Main = () => {
               })}
           </ul>
         </div>
-        <div className="section">
+        <div className="section-board">
           <ul className="page-number-list">
             {posts.length === 0 && <li>1</li>}
             {posts.length > 0 &&
