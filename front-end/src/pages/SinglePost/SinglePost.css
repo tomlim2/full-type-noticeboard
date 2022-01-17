@@ -1,0 +1,19 @@
+.section-post {
+  padding: 10px;
+}
+
+.section-post.content {
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+
+.section-post .infos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 10px;
+}
+
+button {
+  margin-right: 10px;
+  cursor: pointer;
+}
