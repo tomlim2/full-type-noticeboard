@@ -5,9 +5,64 @@
       {
         "__id": 123,
         "postNumber": 1,
-        "title": "Available",
+        "title": "Available a",
         "content": "dummy 1",
-        "writer": "오리",
+        "writer": "송골매",
+        "createdAt": "2022-01-01",
+        "editedAt": "2022-01-01"
+      },
+      {
+        "__id": 234,
+        "postNumber": 2,
+        "title": "Available b",
+        "content": "dummy 9",
+        "writer": "거위",
+        "createdAt": "2022-01-01",
+        "editedAt": "2022-01-01"
+      },
+      {
+        "__id": 345,
+        "postNumber": 3,
+        "title": "Available c",
+        "content": "dummy 6",
+        "writer": "비질란테",
+        "createdAt": "2022-01-01",
+        "editedAt": "2022-01-01"
+      },
+      {
+        "__id": 456,
+        "postNumber": 4,
+        "title": "Available d",
+        "content": "dummy 4",
+        "writer": "벌처",
+        "createdAt": "2022-01-01",
+        "editedAt": "2022-01-01"
+      },
+      {
+        "__id": 567,
+        "postNumber": 5,
+        "title": "Available e",
+        "content": "dummy 3",
+        "writer": "팔콘",
+        "createdAt": "2022-01-01",
+        "editedAt": "2022-01-01"
+      },
+      {
+        "__id": 789,
+        "postNumber": 6,
+        "title": "Available f",
+        "content": "dummy 2",
+        "writer": "대머리독수리",
+        "createdAt": "2022-01-01",
+        "editedAt": "2022-01-01"
+      }
+      ,
+      {
+        "__id": 9101,
+        "postNumber": 7,
+        "title": "Available g",
+        "content": "dummy 2",
+        "writer": "거위",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       }

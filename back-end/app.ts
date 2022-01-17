@@ -6,12 +6,22 @@ let posts = postsDatabase.data;
 
 const app: Application = express();
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 app.use(express.urlencoded({ extended: false }));
 
 function newPostNumber(): number {
   postsDatabase.currentPostNumber = postsDatabase.currentPostNumber + 1;
   return postsDatabase.currentPostNumber;
 }
+
+app.get("/api/post", (req: Request, res: Response): void => {
+  res.status(200).json(posts);
+});
 
 app.post("/api/post", (req: Request, res: Response): void => {
   const { title, content } = req.body;
@@ -36,10 +46,6 @@ app.post("/api/post", (req: Request, res: Response): void => {
   posts.push(newPost);
   
   res.status(200).json(newPost);
-});
-
-app.get("/api/post", (req: Request, res: Response): void => {
-  res.status(200).json(posts);
 });
 
 app.get("/api/post/:id", async (req: Request, res: Response) => {
