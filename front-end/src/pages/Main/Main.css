@@ -1,0 +1,36 @@
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.board {
+    display: grid;
+    grid-template-rows: 80px 1fr 50px;
+    width: 50%;
+    height: 90vh;
+    background-color: lightcyan;
+}
+
+.board .section:nth-child(1){
+    text-align: center;
+}
+
+.board .section:nth-last-child(1){
+    text-align: center;
+}
+
+.post-list{
+    padding: 20px 50px;
+    list-style-type: none;
+}
+
+.pagination{
+    padding: 0;
+    list-style-type: none
+}
+
+.pagination li{
+    display: inline-block;
+    padding: 2px;
+}
