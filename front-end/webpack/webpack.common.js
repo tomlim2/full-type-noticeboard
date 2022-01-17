@@ -41,4 +41,8 @@ module.exports = {
     }),
   ],
   stats: "errors-only",
+  devServer: {
+    port: 5050,
+    historyApiFallback: true,
+  },
 };

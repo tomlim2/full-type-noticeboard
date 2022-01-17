@@ -1,13 +1,14 @@
 import React from "react";
+import Post from "../../models/posts";
 import "./PostItem.css";
 
-const PostItem = () => {
+const PostItem: React.FC<{ post: Post }> = (props) => {
   return (
     <li className="post-item">
-      <div>글번호: 1</div>
-      <div>제목: 코뿔소는 기침이 심합니다</div>
-      <div>작성자:폴</div>
-      <div>작성일:2022-1-17</div>
+      <div>글번호: {props.post.postNumber}</div>
+      <div>제목: {props.post.title}</div>
+      <div>작성자: {props.post.writer}</div>
+      <div>작성일:{props.post.editedAt}</div>
     </li>
   );
 };

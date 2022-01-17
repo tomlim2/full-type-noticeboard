@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main/Main";
 import PostDetail from "./pages/PostDetail/PostDetail";
-import "./index.css"
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/PostDetail/:id" element={<PostDetail />} />
+        <Route path="post" element={<PostDetail />}>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
