@@ -7,16 +7,21 @@
 }
 
 .post-detail .section-post {
-padding: 10px;
+  padding: 10px;
 }
 
-.post-detail .section-post .infos{
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin-bottom: 10px;
+.post-detail .section-post.content {
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+}
+
+.post-detail .section-post .infos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: 10px;
 }
 
 .post-detail button {
-    margin-right: 10px;
-    cursor: pointer;
+  margin-right: 10px;
+  cursor: pointer;
 }

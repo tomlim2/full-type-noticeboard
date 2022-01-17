@@ -27,15 +27,14 @@ const PostDetail = () => {
           </div>
           제목:{post && post.title}
         </div>
-        <div className="section-post">
+        <div className="section-post content">
           내용
-          <br />
-          {post && post.content}
+          <p>{post && post.content}</p>
         </div>
         <div className="section-post">
           <button>수정</button>
           <button>삭제</button>
-          <button onClick={()=>navigate('/')}>목록으로</button>
+          <button onClick={() => navigate("/")}>목록으로</button>
         </div>
       </div>
     </div>
