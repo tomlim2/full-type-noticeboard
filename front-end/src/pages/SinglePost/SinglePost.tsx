@@ -47,7 +47,7 @@ const SinglePost = () => {
         <p>{post && post.content}</p>
       </div>
       <div className="section">
-        <Button options={{ linkTo: `post/update/${path}` }}>이 글 수정하기</Button>
+        <Button options={{ linkTo: `/post/update/${path}` }}>이 글 수정하기</Button>
         <Button options={{ onClick: deletePost }}>삭제하기</Button>
         <Button options={{ linkTo: "/" }}>목록으로</Button>
       </div>

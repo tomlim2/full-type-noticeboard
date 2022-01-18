@@ -15,9 +15,15 @@ const AddPost = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    fetch(`http://localhost:5000/api/post/`, requestOptions).then(() =>
-      alert("새로운 글이 생성되었습니다!")
-    );
+    if (titleInput === "" || contentInput === "") {
+      return alert("제목 혹은 내용이 비어있습니다!");
+    }
+
+    fetch(`http://localhost:5000/api/post/`, requestOptions).then(() => {
+      setTitleInput("");
+      setContentInput("");
+      alert("새로운 글이 생성되었습니다!");
+    });
   };
 
   return (

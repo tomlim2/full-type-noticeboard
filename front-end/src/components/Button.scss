@@ -1,3 +1,18 @@
-.Button{
-    cursor: pointer;
+.Button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: darkgray;
+
+  color: white;
+
+  cursor: pointer;
+
+  & + .Button {
+    margin-left: 5px;
+  }
+
+  &:hover {
+    background-color: black;
+  }
 }
