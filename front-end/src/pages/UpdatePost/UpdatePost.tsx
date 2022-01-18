@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button";
 import Card from "../../components/Card";
 import "./UpdatePost.scss";
@@ -6,6 +7,7 @@ import "./UpdatePost.scss";
 const UpdatePost = () => {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
+  const navigate = useNavigate();
   const path =
     location.pathname.split("/")[location.pathname.split("/").length - 1];
 
@@ -31,7 +33,11 @@ const UpdatePost = () => {
         `http://localhost:5000/api/post/${path}`,
         requestOptions
       );
+      const data = await res.json();
+
       if (res) alert("글이 수정되었습니다!");
+      navigate(`/post/${data.__id}`);
+      
     } catch (error) {
       console.log(error);
     }

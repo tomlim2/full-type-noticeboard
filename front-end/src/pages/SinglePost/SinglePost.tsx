@@ -28,9 +28,15 @@ const SinglePost = () => {
   };
 
   const formatDate = (date) => {
-    const getDate = new Date(date)
-    return getDate.getFullYear()+' / '+(getDate.getMonth()+1)+' / '+getDate.getDate()
-  }
+    const getDate = new Date(date);
+    return (
+      getDate.getFullYear() +
+      " / " +
+      (getDate.getMonth() + 1) +
+      " / " +
+      getDate.getDate()
+    );
+  };
 
   return (
     <Card pageName="SinglePost">
@@ -40,14 +46,18 @@ const SinglePost = () => {
           <div>작성자: {post && post.writer} </div>
           <div>작성일: {post && formatDate(post.editedAt)}</div>
         </div>
-        제목: {post && post.title}
       </div>
       <div className="section content">
+        제목
+        <p>{post && post.title}</p>
+        <br />
         내용
         <p>{post && post.content}</p>
       </div>
       <div className="section">
-        <Button options={{ linkTo: `/post/update/${path}` }}>이 글 수정하기</Button>
+        <Button options={{ linkTo: `/post/update/${path}` }}>
+          이 글 수정하기
+        </Button>
         <Button options={{ onClick: deletePost }}>삭제하기</Button>
         <Button options={{ linkTo: "/" }}>목록으로</Button>
       </div>

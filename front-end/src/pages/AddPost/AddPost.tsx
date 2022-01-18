@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilValue } from "recoil";
 import { userInfoAtom } from "../../atoms/state";
 import Card from "../../components/Card";
@@ -8,11 +9,17 @@ import "./AddPost.scss";
 const AddPost = () => {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
-  const userInfo = useRecoilValue(userInfoAtom)
+  const userInfo = useRecoilValue(userInfoAtom);
+  const navigate = useNavigate();
+
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: titleInput, content: contentInput, writer: userInfo.username}),
+    body: JSON.stringify({
+      title: titleInput,
+      content: contentInput,
+      writer: userInfo.username,
+    }),
   };
 
   const submitHandler = (event) => {
@@ -22,11 +29,15 @@ const AddPost = () => {
       return alert("제목 혹은 내용이 비어있습니다!");
     }
 
-    fetch(`http://localhost:5000/api/post/`, requestOptions).then(() => {
-      setTitleInput("");
-      setContentInput("");
-      alert("새로운 글이 생성되었습니다!");
-    });
+    fetch(`http://localhost:5000/api/post/`, requestOptions)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data.__id);
+        setTitleInput("");
+        setContentInput("");
+        alert("새로운 글이 생성되었습니다!");
+        navigate(`/post/${data.__id}`);
+      });
   };
 
   return (

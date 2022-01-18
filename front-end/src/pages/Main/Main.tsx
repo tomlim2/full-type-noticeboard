@@ -4,7 +4,7 @@ import Card from "../../components/Card";
 import Button from "../../components/Button";
 import "./Main.scss";
 
-const limit = 3;
+const limit = 5;
 
 const Main = () => {
   const [posts, setPosts] = useState([]);
@@ -19,8 +19,10 @@ const Main = () => {
   return (
     <Card pageName="Main">
       <div className="section header">
-        <h2>게시판</h2>
-        <Button options={{linkTo:"post/add"}}>글쓰기</Button>
+        <div>
+          <h2>게시판</h2>
+          <Button options={{ linkTo: "post/add" }}>글쓰기</Button>
+        </div>
       </div>
       <div className="section">
         <ul className="postList">

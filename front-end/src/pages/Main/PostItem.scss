@@ -1,13 +1,20 @@
 .postItem {
-  margin-top: 4px;
+  display: grid;
+  grid-template-rows: repeat(2, 50%);
+  gap: 5px;
+  height: 100%;
   padding: 10px;
   border: solid 4px black;
   border-radius: 10px;
   background-color: white;
   cursor: pointer;
-  
+
+  .info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
 
   &:hover {
-      background-color: #f5f5f5;
-  } 
+    background-color: #f5f5f5;
+  }
 }

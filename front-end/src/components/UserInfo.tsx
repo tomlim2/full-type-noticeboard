@@ -12,7 +12,7 @@ const UserInfo = () => {
           .then((data) => setUserInfo(data));
       }, []);
 
-  return <div className="UserInfo">{userInfo.username}님이 로그인 되어있습니다.</div>;
+  return <div className="UserInfo">"{userInfo.username}"님이 로그인 되어있습니다.</div>;
 };
 
 export default UserInfo;
