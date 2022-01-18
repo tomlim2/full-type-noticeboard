@@ -7,7 +7,7 @@
         "postNumber": 1,
         "title": "Available a",
         "content": "dummy 1",
-        "writer": "송골매",
+        "author": "송골매",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       },
@@ -16,7 +16,7 @@
         "postNumber": 2,
         "title": "Available b",
         "content": "dummy 9",
-        "writer": "거위",
+        "author": "거위",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       },
@@ -25,7 +25,7 @@
         "postNumber": 3,
         "title": "Available c",
         "content": "dummy 6",
-        "writer": "비질란테",
+        "author": "비질란테",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       },
@@ -34,7 +34,7 @@
         "postNumber": 4,
         "title": "Available d",
         "content": "dummy 4",
-        "writer": "벌처",
+        "author": "벌처",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       },
@@ -43,7 +43,7 @@
         "postNumber": 5,
         "title": "Available e",
         "content": "dummy 3",
-        "writer": "팔콘",
+        "author": "팔콘",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       },
@@ -52,7 +52,7 @@
         "postNumber": 6,
         "title": "Available f",
         "content": "dummy 2",
-        "writer": "대머리독수리",
+        "author": "대머리독수리",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       }
@@ -62,7 +62,7 @@
         "postNumber": 7,
         "title": "Available g",
         "content": "dummy 2",
-        "writer": "거위",
+        "author": "거위",
         "createdAt": "2022-01-01",
         "editedAt": "2022-01-01"
       }

@@ -37,14 +37,14 @@ app.get("/api/post", (req: Request, res: Response): void => {
 });
 
 app.post("/api/post", (req: Request, res: Response): void => {
-  const { title, content, writer } = req.body;
+  const { title, content, author } = req.body;
   console.log(req.body);
   const newPost: {
     __id: number;
     postNumber: number;
     title: string;
     content: string;
-    writer: string;
+    author: string;
     createdAt: string;
     editedAt: string;
   } = {
@@ -52,7 +52,7 @@ app.post("/api/post", (req: Request, res: Response): void => {
     postNumber: newPostNumber(),
     title: title,
     content: content,
-    writer: writer,
+    author: author,
     createdAt: new Date().toISOString(),
     editedAt: new Date().toISOString(),
   };
@@ -90,15 +90,13 @@ app.put("/api/post/:id", async (req: Request, res: Response) => {
   const { title, content } = req.body;
   const post = await posts.find((post) => post.__id === Number(id));
 
-  console.log(req.body);
-
   if (post) {
     const newPost: {
       __id: number;
       postNumber: number;
       title: string;
       content: string;
-      writer: string;
+      author: string;
       createdAt: string;
       editedAt: string;
     } = {
@@ -106,7 +104,7 @@ app.put("/api/post/:id", async (req: Request, res: Response) => {
       postNumber: post.postNumber,
       title: title,
       content: content,
-      writer: post.writer,
+      author: post.author,
       createdAt: post.createdAt,
       editedAt: new Date().toISOString(),
     };
@@ -117,7 +115,8 @@ app.put("/api/post/:id", async (req: Request, res: Response) => {
       }
       return post;
     });
-    res.status(200).send(posts);
+
+    res.status(200).send(newPost);
   }
 });
 
