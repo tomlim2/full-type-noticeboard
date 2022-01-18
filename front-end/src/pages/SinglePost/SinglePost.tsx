@@ -43,7 +43,7 @@ const SinglePost = () => {
       <div className="section header">
         <div className="infos">
           <div>글번호: {post && post.postNumber} </div>
-          <div>작성자: {post && post.writer} </div>
+          <div>작성자: {post && post.author} </div>
           <div>작성일: {post && formatDate(post.editedAt)}</div>
         </div>
       </div>

@@ -7,14 +7,29 @@
   border: solid 4px black;
   border-radius: 10px;
   background-color: white;
-  cursor: pointer;
 
   .info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+
+    .author {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
-  &:hover {
-    background-color: #f5f5f5;
+  .title {
+    color: rgb(50, 50, 50);
+    font-size: 1.25rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #f5f5f5;
+      color: black;
+      text-decoration: underline;
+    }
   }
 }

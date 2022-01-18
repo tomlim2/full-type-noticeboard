@@ -3,7 +3,7 @@ interface Post {
   postNumber: number;
   title: string;
   content: string;
-  writer: string;
+  author: string;
   createdAt: string;
   editedAt: string;
 }

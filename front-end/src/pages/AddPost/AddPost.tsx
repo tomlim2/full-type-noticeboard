@@ -18,7 +18,7 @@ const AddPost = () => {
     body: JSON.stringify({
       title: titleInput,
       content: contentInput,
-      writer: userInfo.username,
+      author: userInfo.username,
     }),
   };
 
