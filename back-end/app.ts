@@ -37,7 +37,7 @@ app.get("/api/post", (req: Request, res: Response): void => {
 });
 
 app.post("/api/post", (req: Request, res: Response): void => {
-  const { title, content } = req.body;
+  const { title, content, writer } = req.body;
   console.log(req.body);
   const newPost: {
     __id: number;
@@ -52,7 +52,7 @@ app.post("/api/post", (req: Request, res: Response): void => {
     postNumber: newPostNumber(),
     title: title,
     content: content,
-    writer: "오리",
+    writer: writer,
     createdAt: new Date().toISOString(),
     editedAt: new Date().toISOString(),
   };
