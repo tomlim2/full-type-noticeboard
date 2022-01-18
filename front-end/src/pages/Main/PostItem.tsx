@@ -5,6 +5,12 @@ import "./PostItem.scss";
 
 const PostItem: React.FC<{ post: Post }> = (props) => {
   const navigate = useNavigate();
+
+  const formatDate = (date) => {
+    const getDate = new Date(date)
+    return getDate.getFullYear()+' / '+(getDate.getMonth()+1)+' / '+getDate.getDate()
+  }
+
   return (
     <li
       onClick={() => navigate(`post/${props.post.__id}`)}
@@ -13,7 +19,7 @@ const PostItem: React.FC<{ post: Post }> = (props) => {
       <div>글번호: {props.post.postNumber}</div>
       <div>제목: {props.post.title}</div>
       <div>작성자: {props.post.writer}</div>
-      <div>작성일:{props.post.editedAt}</div>
+      <div>작성일: {formatDate(props.post.editedAt)}</div>
     </li>
   );
 };

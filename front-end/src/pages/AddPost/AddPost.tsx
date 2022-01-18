@@ -15,20 +15,18 @@ const AddPost = () => {
   const submitHandler = (event) => {
     event.preventDefault();
 
-    console.log(titleInput);
-
     fetch(`http://localhost:5000/api/post/`, requestOptions).then(() =>
       alert("새로운 글이 생성되었습니다!")
     );
   };
 
   return (
-    <Card pageName="AddPost">
-      <div className="section header">
-        <h2>글 추가하기</h2>
-      </div>
-      <div className="section">
-        <form onSubmit={submitHandler}>
+    <form onSubmit={submitHandler}>
+      <Card pageName="AddPost">
+        <div className="section header">
+          <h2>글 추가하기</h2>
+        </div>
+        <div className="section">
           <div>
             <label>글제목</label>
             <br />
@@ -50,12 +48,13 @@ const AddPost = () => {
               placeholder="내용을 입력해주세요!"
             />
           </div>
+        </div>
+        <div className="section">
           <Button options={{ type: "submit" }}>만들기</Button>
           <Button options={{ linkTo: "/" }}>목록으로</Button>
-        </form>
-      </div>
-      <div className="section"></div>
-    </Card>
+        </div>
+      </Card>
+    </form>
   );
 };
 
