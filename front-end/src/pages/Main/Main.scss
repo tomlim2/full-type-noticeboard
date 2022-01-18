@@ -4,30 +4,34 @@
       border-bottom: 4px solid black;
       text-align: center;
 
-      .buttonGroup {
-        display: flex;
-        align-items: center;
+      .headerInner {
+        width: 100%;
+        padding: 0 10px;
 
-        .searchBar {
-          display: inline-block;
+        .buttonGroup {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
 
-          .searchForm {
-            display: flex;
-            margin: 0 5px;
+          .searchBar {
+            display: inline-block;
 
-            .searchInput {
-              font-size: 1.25rem;
-              padding: 3px;
+            .searchForm {
+              display: flex;
+
+              .searchInput {
+                font-size: 1.25rem;
+                padding: 3px;
+              }
             }
           }
-        }
 
-        .selectOption{
-          padding: 10px;
-          margin-right: 5px;
-          border-radius: 5px;
+          .selectOption {
+            padding: 10px;
+            border-radius: 5px;
 
-          cursor: pointer;
+            cursor: pointer;
+          }
         }
       }
     }
@@ -37,37 +41,19 @@
       grid-template-rows: repeat(5, 1fr);
       gap: 10px;
       height: 100%;
-      padding: 10px;
+      margin: 0;
+      padding: 20px 10px;
       list-style-type: none;
-      border-bottom: 4px soild black;
     }
 
-    .pageNumberList {
-      padding: 0;
-      list-style-type: none;
-
-      li {
-        display: inline-block;
-        margin: 0 5px;
-        color: lightslategray;
-        cursor: pointer;
-      }
-
-      .currentPageNumber {
-        color: black;
+    &.footer {
+      .footerInner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 0 10px;
       }
     }
-  }
-
-  .section:nth-child(1) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .section:nth-last-child(1) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }

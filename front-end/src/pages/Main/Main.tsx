@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import PostItem from "./PostItem";
+import Pagination from "./Pagination";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import "./Main.scss";
-
-const limit = 5;
 
 const Main = () => {
   const [posts, setPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [enteredWords, setEnteredWords] = useState("");
-  const [selectedOption, setSelectedOption] = useState("recent");
+  const [sortPosts, setSortPosts] = useState("recent");
+  const [limit, setLimit] = useState(5);
+  const lastPageNumber = Math.floor(posts.length / limit + 1);
 
   useEffect(() => {
     fetch("http://localhost:5000/api/post")
       .then((res) => res.json())
       .then((data) => {
-        const sortByRecent =
-          selectedOption === "recent" ? data.reverse() : data;
+        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
 
         setPosts(sortByRecent);
       });
@@ -27,8 +27,7 @@ const Main = () => {
     fetch("http://localhost:5000/api/post")
       .then((res) => res.json())
       .then((data) => {
-        const sortByRecent =
-          selectedOption === "recent" ? data.reverse() : data;
+        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
 
         const filteredData = sortByRecent.filter((post) =>
           post.author.includes(authorName)
@@ -42,8 +41,7 @@ const Main = () => {
     fetch("http://localhost:5000/api/post")
       .then((res) => res.json())
       .then((data) => {
-        const sortByRecent =
-          selectedOption === "recent" ? data.reverse() : data;
+        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
 
         setPosts(sortByRecent);
       });
@@ -55,8 +53,7 @@ const Main = () => {
     fetch("http://localhost:5000/api/post")
       .then((res) => res.json())
       .then((data) => {
-        const sortByRecent =
-          selectedOption === "recent" ? data.reverse() : data;
+        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
         const filteredData = sortByRecent.filter(
           (post) =>
             post.title.toLowerCase().includes(enteredWords) ||
@@ -69,8 +66,8 @@ const Main = () => {
     setEnteredWords("");
   };
 
-  const dropdownChangeHandler = (event) => {
-    setSelectedOption(event.target.value);
+  const sortPostByOption = (event) => {
+    setSortPosts(event.target.value);
 
     if (event.target.value === "recent") {
       setPosts(
@@ -88,13 +85,15 @@ const Main = () => {
     }
   };
 
+  
+
   return (
     <Card pageName="Main">
       <div className="section header">
-        <div>
+        <div className="headerInner">
           <h2>게시판</h2>
           <div className="buttonGroup">
-            <Button options={{ linkTo: "post/add" }}>글쓰기</Button>
+            <Button options={{ onClick: resetPosts }}>초기화</Button>
             <div className="searchBar">
               <form onSubmit={searchPosts} className="searchForm">
                 <input
@@ -108,13 +107,12 @@ const Main = () => {
             </div>
             <select
               className="selectOption"
-              value={selectedOption}
-              onChange={dropdownChangeHandler}
+              value={sortPosts}
+              onChange={sortPostByOption}
             >
               <option value="recent">Recent</option>
               <option value="older">Older</option>
             </select>
-            <Button options={{ onClick: resetPosts }}>초기화</Button>
           </div>
         </div>
       </div>
@@ -138,28 +136,17 @@ const Main = () => {
             })}
         </ul>
       </div>
-      <div className="section">
-        <ul className="pageNumberList">
-          {posts.length === 0 && <li>1</li>}
-          {posts.length > 0 &&
-            posts.map((post, index) => {
-              if (index % limit === 0) {
-                const offset = index / limit + 1;
-
-                return (
-                  <li
-                    className={
-                      offset === currentPage ? "currentPageNumber" : ""
-                    }
-                    key={post.__id}
-                    onClick={() => setCurrentPage(offset)}
-                  >
-                    {offset}
-                  </li>
-                );
-              }
-            })}
-        </ul>
+      <div className="section footer">
+        <div className="footerInner">
+          <Button options={{ linkTo: "post/add" }}>글쓰기</Button>
+          <Pagination
+            limit={limit}
+            posts={posts}
+            currentPage={currentPage}
+            onSetLimit={setLimit}
+            onSetCurrentPage={setCurrentPage}
+          />
+        </div>
       </div>
     </Card>
   );

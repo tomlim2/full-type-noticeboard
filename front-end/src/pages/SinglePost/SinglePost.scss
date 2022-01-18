@@ -1,33 +1,43 @@
 .SinglePost {
   .section {
-    padding: 10px;
-
     .infos {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
       width: 100%;
+      height: 100%;
+      text-align: center;
+
+      .info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        padding: 0 10px;
+      }
+
+      .info.author {
+        border-left: 4px solid black;
+        border-right: 4px solid black;
+      }
+
+      .item {
+        font-size: 1.5rem;
+      }
     }
 
-    p{
-      font-size: 1.25rem;
+    &.body {
+      padding: 10px;
+
+      p {
+        padding: 10px;
+        margin-top: 2px;
+        border-top: 2px solid black;
+        font-size: 1.25rem;
+      }
     }
   }
-
-  .section:nth-child(1) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
   .section:nth-child(2) {
     border-top: 4px solid black;
     border-bottom: 4px solid black;
-  }
-
-  .section:nth-child(3) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 }

@@ -42,12 +42,21 @@ const SinglePost = () => {
     <Card pageName="SinglePost">
       <div className="section header">
         <div className="infos">
-          <div>글번호: {post && post.postNumber} </div>
-          <div>작성자: {post && post.author} </div>
-          <div>작성일: {post && formatDate(post.editedAt)}</div>
+          <div className="info">
+            글번호
+            <span className="item">{post && post.postNumber}</span>
+          </div>
+          <div className="info author">
+            작성자
+            <span className="item">{post && post.author}</span>
+          </div>
+          <div className="info">
+            작성일
+            <span className="item">{post && formatDate(post.editedAt)}</span>
+          </div>
         </div>
       </div>
-      <div className="section content">
+      <div className="section body">
         제목
         <p>{post && post.title}</p>
         <br />

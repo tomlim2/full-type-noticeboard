@@ -1,17 +1,17 @@
 .postItem {
   display: grid;
-  grid-template-rows: repeat(2, 50%);
+  grid-template-rows: auto 1fr;
   gap: 5px;
   height: 100%;
-  padding: 10px;
   border: solid 4px black;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   background-color: white;
 
   .info {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-
+    padding: 5px 10px;
     .author {
       cursor: pointer;
 
@@ -22,6 +22,10 @@
   }
 
   .title {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: 4px solid black;
     color: rgb(50, 50, 50);
     font-size: 1.25rem;
     cursor: pointer;

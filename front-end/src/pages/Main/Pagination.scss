@@ -1,0 +1,34 @@
+.Pagenation {
+  .pageLimitSelecter {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .pageNumber {
+    display: inline-block;
+    padding: 0 10px;
+
+    .pageNumberArrow {
+      cursor: pointer;
+    }
+
+    .pageNumberList {
+      display: inline-block;
+      margin: 0;
+      padding: 0 10px;
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        margin: 0 5px;
+        color: lightslategray;
+        cursor: pointer;
+      }
+
+      .currentPageNumber {
+        color: black;
+      }
+    }
+  }
+}
