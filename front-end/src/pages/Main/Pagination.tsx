@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Post from "../../models/posts";
-import "./Pagination.scss"
+import "./Pagination.scss";
 
 const Pagination: React.FC<{
-  limit: number;
   posts: Post[];
+  limit: number;
   currentPage: number;
   onSetCurrentPage: any;
   onSetLimit: any;
 }> = ({ limit, posts, currentPage, onSetCurrentPage, onSetLimit }) => {
   const lastPageNumber = Math.floor(posts.length / limit + 1);
+  const pageLimit = 2;
+  const limitBiggerThanOffset = pageLimit + 1 < lastPageNumber;
 
   const handleLimitChange = (event) => {
     const newLastPageNumber = Math.floor(posts.length / event.target.value + 1);
@@ -51,12 +53,28 @@ const Pagination: React.FC<{
           {"<"}
         </span>
         <ul className="pageNumberList">
+          {currentPage > pageLimit && limitBiggerThanOffset ? (
+            <li>...</li>
+          ) : null}
           {posts.length === 0 && <li>1</li>}
           {posts.length > 0 &&
             posts.map((post, index) => {
-              if (index % limit === 0) {
-                const offset = index / limit + 1;
+              const offset = index / limit + 1;
 
+              const firstPage =
+                currentPage === 1
+                  ? offset < currentPage + pageLimit + 1
+                  : offset < currentPage + pageLimit;
+
+              const lastPage =
+                currentPage === lastPageNumber
+                  ? offset > currentPage - pageLimit - 1
+                  : offset > currentPage - pageLimit;
+
+              const isPageLimit = firstPage && lastPage;
+
+              if (index % limit === 0 && isPageLimit) {
+                offset < currentPage;
                 return (
                   <li
                     className={
@@ -70,6 +88,7 @@ const Pagination: React.FC<{
                 );
               }
             })}
+          {currentPage <= lastPageNumber - 2 && limitBiggerThanOffset ? <li>...</li> : null}
         </ul>
         <span onClick={() => movePage(1)} className="pageNumberArrow">
           {">"}

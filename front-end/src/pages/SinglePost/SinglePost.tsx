@@ -41,6 +41,12 @@ const SinglePost = () => {
   return (
     <Card pageName="SinglePost">
       <div className="section header">
+        <div>
+          제목
+          <h1>{post && post.title}</h1>
+        </div>
+      </div>
+      <div className="section body">
         <div className="infos">
           <div className="info">
             글번호
@@ -55,13 +61,10 @@ const SinglePost = () => {
             <span className="item">{post && formatDate(post.editedAt)}</span>
           </div>
         </div>
-      </div>
-      <div className="section body">
-        제목
-        <p>{post && post.title}</p>
-        <br />
-        내용
-        <p>{post && post.content}</p>
+        <div className="content">
+          내용 <br />
+          <p>{post && post.content}</p>
+        </div>
       </div>
       <div className="section">
         <Button options={{ linkTo: `/post/update/${path}` }}>
