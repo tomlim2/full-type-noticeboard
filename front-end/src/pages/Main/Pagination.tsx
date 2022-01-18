@@ -1,13 +1,14 @@
 import React from "react";
+import Post from "../../models/posts";
+import "./Pagination.scss"
 
-const Pagination = ({
-  limit,
-  posts,
-  currentPage,
-  onSetCurrentPage,
-  onSetLimit,
-}) => {
-
+const Pagination: React.FC<{
+  limit: number;
+  posts: Post[];
+  currentPage: number;
+  onSetCurrentPage: any;
+  onSetLimit: any;
+}> = ({ limit, posts, currentPage, onSetCurrentPage, onSetLimit }) => {
   const lastPageNumber = Math.floor(posts.length / limit + 1);
 
   const handleLimitChange = (event) => {
