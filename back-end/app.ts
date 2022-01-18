@@ -6,13 +6,16 @@ let posts = postsDatabase.data;
 
 const app: Application = express();
 
-app.use(function(req, res, next) {
+app.use(function (req: Request, res: Response, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 function newPostNumber(): number {
   postsDatabase.currentPostNumber = postsDatabase.currentPostNumber + 1;
@@ -25,6 +28,7 @@ app.get("/api/post", (req: Request, res: Response): void => {
 
 app.post("/api/post", (req: Request, res: Response): void => {
   const { title, content } = req.body;
+  console.log(req.body);
   const newPost: {
     __id: number;
     postNumber: number;
@@ -44,7 +48,7 @@ app.post("/api/post", (req: Request, res: Response): void => {
   };
 
   posts.push(newPost);
-  
+
   res.status(200).json(newPost);
 });
 
@@ -71,10 +75,12 @@ app.delete("/api/post/:id", async (req: Request, res: Response) => {
   res.status(200).json({ success: true, data: newPosts });
 });
 
-app.patch("/api/post/:id", async (req: Request, res: Response) => {
+app.put("/api/post/:id", async (req: Request, res: Response) => {
   const { id } = req.params;
   const { title, content } = req.body;
   const post = await posts.find((post) => post.__id === Number(id));
+
+  console.log(req.body);
 
   if (post) {
     const newPost: {
