@@ -1,0 +1,21 @@
+.SinglePost {
+  .section {
+    padding: 10px;
+
+    &.content{
+      border-top: 4px solid black;
+      border-bottom: 4px solid black;
+    }
+
+    .infos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-bottom: 10px;
+    }
+  
+    button {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+}

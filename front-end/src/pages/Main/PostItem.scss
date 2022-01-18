@@ -1,0 +1,13 @@
+.postItem {
+  margin-top: 4px;
+  padding: 10px;
+  border: solid 4px black;
+  border-radius: 10px;
+  background-color: white;
+  cursor: pointer;
+  
+
+  &:hover {
+      background-color: #f5f5f5;
+  } 
+}

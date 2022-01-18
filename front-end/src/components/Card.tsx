@@ -1,9 +1,10 @@
 import React from "react";
-import './Card.css'
+import './Card.scss'
 
-const Card = ({ children }) => {
+const Card = ({ pageName, children }) => {
+  const className = `${pageName} CardPage`
   return (
-    <div className="card-wrapper">
+    <div className={className}>
       <div className="card">{children}</div>
     </div>
   );

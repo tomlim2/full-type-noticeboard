@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Post from "../../models/posts";
 import Card from "../../components/Card";
-import "./SinglePost.css";
+import "./SinglePost.scss";
 
 const SinglePost = () => {
   const [post, setPost] = useState<Post>();
@@ -27,8 +27,8 @@ const SinglePost = () => {
   };
   
   return (
-    <Card>
-      <div className="section-post header">
+    <Card pageName="SinglePost">
+      <div className="section header">
         <div className="infos">
           <div>글번호: {post && post.postNumber} </div>
           <div>작성자: {post && post.writer} </div>
@@ -36,13 +36,13 @@ const SinglePost = () => {
         </div>
         제목: {post && post.title}
       </div>
-      <div className="section-post content">
+      <div className="section content">
         내용
         <p>{post && post.content}</p>
       </div>
-      <div className="section-post">
-        <button>수정</button>
-        <button onClick={deletePost}>삭제</button>
+      <div className="section">
+        <button>이 글 수정하기</button>
+        <button onClick={deletePost}>삭제하기</button>
         <button onClick={() => navigate("/")}>목록으로</button>
       </div>
     </Card>

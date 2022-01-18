@@ -1,14 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import Post from "../../models/posts";
-import "./PostItem.css";
+import "./PostItem.scss";
 
 const PostItem: React.FC<{ post: Post }> = (props) => {
   const navigate = useNavigate();
   return (
     <li
       onClick={() => navigate(`post/${props.post.__id}`)}
-      className="post-item"
+      className="postItem"
     >
       <div>글번호: {props.post.postNumber}</div>
       <div>제목: {props.post.title}</div>

@@ -1,0 +1,37 @@
+.Main {
+  .section {
+    &.header{
+      padding-bottom: 10px;
+      border-bottom: 4px solid black;
+    }
+
+    .postList {
+      padding: 20px 50px;
+      list-style-type: none;
+    }
+
+    .pageNumberList {
+      padding: 0;
+      list-style-type: none;
+
+      li {
+        display: inline-block;
+        padding: 2px;
+        color: lightslategray;
+        cursor: pointer;
+      }
+
+      .currentPageNumber {
+        color: black;
+      }
+    }
+  }
+
+  .section:nth-child(1) {
+    text-align: center;
+  }
+
+  .section:nth-last-child(1) {
+    text-align: center;
+  }
+}

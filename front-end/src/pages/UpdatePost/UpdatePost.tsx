@@ -3,7 +3,7 @@ import Card from '../../components/Card'
 
 const UpdatePost = () => {
     return (
-        <Card>
+        <Card pageName="UpdatePost">
             <div>Update Card</div>
         </Card>
     )

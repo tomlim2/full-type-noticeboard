@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PostItem from "./PostItem";
 import Card from "../../components/Card";
-import "./Main.css";
+import "./Main.scss";
 
 const limit = 3;
 
@@ -18,13 +18,13 @@ const Main = () => {
   }, []);
 
   return (
-    <Card>
-      <div className="section-board">
+    <Card pageName="Main">
+      <div className="section header">
         <h2>게시판</h2>
         <button onClick={() => navigate("post/add")}>글쓰기</button>
       </div>
-      <div className="section-board">
-        <ul className="post-list">
+      <div className="section">
+        <ul className="postList">
           {posts.length === 0 && <p>등록된 데이터가 없습니다.</p>}
           {posts.length > 0 &&
             posts.map((post, index) => {
@@ -37,8 +37,8 @@ const Main = () => {
             })}
         </ul>
       </div>
-      <div className="section-board">
-        <ul className="page-number-list">
+      <div className="section">
+        <ul className="pageNumberList">
           {posts.length === 0 && <li>1</li>}
           {posts.length > 0 &&
             posts.map((post, index) => {
@@ -48,7 +48,7 @@ const Main = () => {
                 return (
                   <li
                     className={
-                      offset === currentPage ? "current-page-number" : ""
+                      offset === currentPage ? "currentPageNumber" : ""
                     }
                     key={post.__id}
                     onClick={() => setCurrentPage(offset)}

@@ -1,20 +1,27 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import "./AddPost.css";
+import Button from "../../components/Button";
+import "./AddPost.scss";
 
 const AddPost = () => {
+  const navigate = useNavigate();
+  const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+  };
+
   return (
-    <Card>
-      <div className="section-add-post header">
+    <Card pageName="AddPost">
+      <div className="section header">
         <h2>글 추가하기</h2>
       </div>
-      <div className="section-add-post">
-        <form>
+      <div className="section">
+        <form onSubmit={submitHandler}>
           <div>
             <label>글제목</label>
             <br />
             <input
-              className="title-input"
+              className="title"
               type="text"
               placeholder="제목을 입력해주세요!"
             />
@@ -22,19 +29,17 @@ const AddPost = () => {
           <div>
             <label>내용</label>
             <br />
-            <textarea
-              className="content-input"
-              placeholder="내용을 입력해주세요!"
-            />
+            <textarea className="content" placeholder="내용을 입력해주세요!" />
           </div>
-          <button className="bttn add-post-bttn" type="submit">
+          <Button options={{ type: "submit" }}>
             만들기
-          </button>
+          </Button>
+          <Button options={{ linkTo: "/" }}>
+            목록으로
+          </Button>
         </form>
       </div>
-      <div className="section-add-post footer">
-        <button>목록으로</button>
-      </div>
+      <div className="section"></div>
     </Card>
   );
 };
