@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Post from "../../models/posts";
 import "./PostItem.scss";
 
-const PostItem: React.FC<{ post: Post }> = (props) => {
+const PostItem: React.FC<{ onClickAuthorName: any; post: Post }> = ({
+  onClickAuthorName,
+  post,
+}) => {
   const navigate = useNavigate();
 
   const formatDate = (date) => {
@@ -20,12 +23,23 @@ const PostItem: React.FC<{ post: Post }> = (props) => {
   return (
     <li className="postItem">
       <div className="info">
-        <div>글번호: {props.post.postNumber}</div>
-        <div>작성자: <span className="author">{props.post.author}</span></div>
-        <div>작성일: {formatDate(props.post.editedAt)}</div>
+        <div>글번호: {post.postNumber}</div>
+        <div>
+          작성자:{" "}
+          <span
+            className="author"
+            onClick={() => onClickAuthorName(post.author)}
+          >
+            {post.author}
+          </span>
+        </div>
+        <div>작성일: {formatDate(post.editedAt)}</div>
       </div>
-      <div className="title" onClick={() => navigate(`post/${props.post.__id}`)}>
-        {props.post.title}
+      <div
+        className="title"
+        onClick={() => navigate(`post/${post.__id}`)}
+      >
+        {post.title}
       </div>
     </li>
   );

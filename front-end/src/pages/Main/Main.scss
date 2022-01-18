@@ -2,6 +2,34 @@
   .section {
     &.header {
       border-bottom: 4px solid black;
+      text-align: center;
+
+      .buttonGroup {
+        display: flex;
+        align-items: center;
+
+        .searchBar {
+          display: inline-block;
+
+          .searchForm {
+            display: flex;
+            margin: 0 5px;
+
+            .searchInput {
+              font-size: 1.25rem;
+              padding: 3px;
+            }
+          }
+        }
+
+        .selectOption{
+          padding: 10px;
+          margin-right: 5px;
+          border-radius: 5px;
+
+          cursor: pointer;
+        }
+      }
     }
 
     .postList {
