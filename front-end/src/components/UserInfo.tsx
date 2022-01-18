@@ -1,12 +1,18 @@
-import React from 'react'
-import "./UserInfo.scss"
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { userInfoAtom } from "../atoms/state";
+import "./UserInfo.scss";
 
 const UserInfo = () => {
-    return (
-        <div className='UserInfo'>
-            탐정님이 로그인 되어있습니다.
-        </div>
-    )
-}
+    const [userInfo, setUserInfo] = useRecoilState(userInfoAtom)
 
-export default UserInfo
+    useEffect(() => {
+        fetch("http://localhost:5000/api/user")
+          .then((res) => res.json())
+          .then((data) => setUserInfo(data));
+      }, []);
+
+  return <div className="UserInfo">{userInfo.username}님이 로그인 되어있습니다.</div>;
+};
+
+export default UserInfo;

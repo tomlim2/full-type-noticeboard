@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { userInfoAtom } from "../../atoms/state";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import "./AddPost.scss";
@@ -6,10 +8,11 @@ import "./AddPost.scss";
 const AddPost = () => {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
+  const userInfo = useRecoilValue(userInfoAtom)
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ title: titleInput, content: contentInput }),
+    body: JSON.stringify({ title: titleInput, content: contentInput, writer: userInfo.username}),
   };
 
   const submitHandler = (event) => {

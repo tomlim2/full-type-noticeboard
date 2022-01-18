@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { RecoilRoot } from "recoil";
 import Router from "./Router";
-import "./index.scss"
+import "./index.scss";
 
-ReactDOM.render(<Router />, document.getElementById("root"));
+ReactDOM.render(
+  <RecoilRoot>
+    <Router />
+  </RecoilRoot>,
+  document.getElementById("root")
+);
