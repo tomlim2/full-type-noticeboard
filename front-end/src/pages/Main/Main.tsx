@@ -13,7 +13,7 @@ const Main = () => {
   useEffect(() => {
     fetch("http://localhost:5000/api/post")
       .then((res) => res.json())
-      .then((data) => setPosts(data));
+      .then((data) => setPosts(data.reverse()));
   }, []);
 
   return (

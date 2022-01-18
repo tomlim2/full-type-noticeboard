@@ -5,10 +5,12 @@ import SinglePost from "./pages/SinglePost/SinglePost";
 import AddPost from "./pages/AddPost/AddPost";
 import UpdatePost from "./pages/UpdatePost/UpdatePost";
 import NotFound from "./pages/NotFound/NotFound";
+import UserInfo from "./components/UserInfo";
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <UserInfo />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="post/add" element={<AddPost />} />
