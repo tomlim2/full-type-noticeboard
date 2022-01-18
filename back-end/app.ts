@@ -1,7 +1,9 @@
 import express, { Request, Response, Application } from "express";
-import data from "./data.json";
+import postsData from "./data/posts.json";
+import usersData from "./data/users.json";
 
-let postsDatabase = data[0];
+let users = usersData[0].data;
+let postsDatabase = postsData[0];
 let posts = postsDatabase.data;
 
 const app: Application = express();
@@ -16,6 +18,14 @@ app.use(function (req: Request, res: Response, next) {
 });
 
 app.use(express.json());
+
+// users API
+
+app.get("/api/user", (req: Request, res: Response): void => {
+  res.status(200).json(users[0]);
+});
+
+// posts API
 
 function newPostNumber(): number {
   postsDatabase.currentPostNumber = postsDatabase.currentPostNumber + 1;
