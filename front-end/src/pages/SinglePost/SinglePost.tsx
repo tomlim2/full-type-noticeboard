@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Post from "../../models/posts";
 import Card from "../../components/Card";
+import Button from "../../components/Button";
 import "./SinglePost.scss";
 
 const SinglePost = () => {
@@ -10,7 +11,7 @@ const SinglePost = () => {
   const navigate = useNavigate();
   const path =
     location.pathname.split("/")[location.pathname.split("/").length - 1];
-
+    
   useEffect(() => {
     fetch(`http://localhost:5000/api/post/${path}`)
       .then((res) => res.json())
@@ -25,7 +26,7 @@ const SinglePost = () => {
       .then(() => alert("해당 글이 삭제되었습니다!"))
       .then(() => navigate("/"));
   };
-  
+
   return (
     <Card pageName="SinglePost">
       <div className="section header">
@@ -41,9 +42,9 @@ const SinglePost = () => {
         <p>{post && post.content}</p>
       </div>
       <div className="section">
-        <button>이 글 수정하기</button>
-        <button onClick={deletePost}>삭제하기</button>
-        <button onClick={() => navigate("/")}>목록으로</button>
+        <Button options={{ linkTo: "post/update" }}>이 글 수정하기</Button>
+        <Button options={{ onClick: deletePost }}>삭제하기</Button>
+        <Button options={{ linkTo: "/" }}>목록으로</Button>
       </div>
     </Card>
   );

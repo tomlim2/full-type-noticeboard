@@ -2,7 +2,7 @@
   .section {
     padding: 10px;
 
-    &.content{
+    &.content {
       border-top: 4px solid black;
       border-bottom: 4px solid black;
     }
@@ -11,11 +11,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       margin-bottom: 10px;
-    }
-  
-    button {
-      margin-right: 10px;
-      cursor: pointer;
     }
   }
 }
