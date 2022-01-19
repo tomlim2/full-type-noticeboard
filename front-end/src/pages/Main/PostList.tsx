@@ -1,6 +1,7 @@
 import React from "react";
 import PostItem from "./PostItem";
 import Post from "../../models/posts";
+import "./PostList.scss"
 
 const PostList: React.FC<{
   posts: Post[];
@@ -9,7 +10,7 @@ const PostList: React.FC<{
   onSearchByAuthorName: any;
 }> = ({ posts, currentPage, limit, onSearchByAuthorName }) => {
   return (
-    <ul className="postList">
+    <ul className="PostList">
       {posts.length > 0 &&
         posts.map((post, index) => {
           if (

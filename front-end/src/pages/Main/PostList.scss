@@ -1,0 +1,10 @@
+.PostList {
+    display: grid;
+    grid-template-rows: auto;
+    align-content: flex-start;
+    gap: 10px;
+    height: 100%;
+    margin: 0;
+    padding: 20px 10px;
+    list-style-type: none;
+  }
