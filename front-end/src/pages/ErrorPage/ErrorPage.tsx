@@ -1,13 +1,13 @@
 import React from "react";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
-import "./NotFound.scss";
+import "./ErrorPage.scss";
 
-const NotFound = () => {
+const ErrorPage: React.FC<{ status: number }> = ({ status }) => {
   return (
-    <Card pageName="NotFound">
+    <Card pageName="ErrorPage">
       <div>
-        <h1>404 - Not Found!</h1>
+        <h1>{status}</h1>
       </div>
       <div>
         <Button options={{ linkTo: "/" }}>목록으로 돌아가기</Button>
@@ -16,4 +16,4 @@ const NotFound = () => {
   );
 };
 
-export default NotFound;
+export default ErrorPage;

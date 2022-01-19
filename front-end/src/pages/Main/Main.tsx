@@ -1,91 +1,98 @@
 import React, { useEffect, useState } from "react";
-import PostItem from "./PostItem";
+import PostList from "./PostList";
 import Pagination from "./Pagination";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
 import "./Main.scss";
 
 const Main = () => {
+  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [posts, setPosts] = useState([]);
+  const [filteredPosts, setFilteredPosts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [enteredWords, setEnteredWords] = useState("");
   const [sortPosts, setSortPosts] = useState("recent");
   const [limit, setLimit] = useState(5);
-  const lastPageNumber = Math.floor(posts.length / limit + 1);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/post")
-      .then((res) => res.json())
-      .then((data) => {
-        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
-
-        setPosts(sortByRecent);
-      });
+    getPosts();
   }, []);
 
-  const searchByAuthorName = (authorName) => {
-    fetch("http://localhost:5000/api/post")
-      .then((res) => res.json())
-      .then((data) => {
-        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
-
-        const filteredData = sortByRecent.filter((post) =>
-          post.author.includes(authorName)
-        );
-
-        setPosts(filteredData);
-      });
+  const resetPosts = () => {
+    setCurrentPage(1);
+    setLimit(5);
+    setSortPosts("recent");
+    setEnteredWords("");
+    getPosts();
   };
 
-  const resetPosts = () => {
-    fetch("http://localhost:5000/api/post")
-      .then((res) => res.json())
-      .then((data) => {
-        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
+  const getPosts = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch("http://localhost:5000/api/post");
+      const data = await res.json();
+      const sortedByRecent = sortByRecent(data);
+      setPosts(data);
+      setFilteredPosts(sortedByRecent);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-        setPosts(sortByRecent);
-      });
+  const sortByRecent = (data) => {
+    return sortPosts === "recent"
+      ? data.sort((a, b) => {
+          return b.postNumber - a.postNumber;
+        })
+      : data.sort((a, b) => {
+          return b.postNumber - a.postNumber;
+        });
+  };
+
+  const searchByAuthorName = async (authorName) => {
+    const sortedByRecent = sortByRecent(posts);
+    const filteredData = sortedByRecent.filter((post) =>
+      post.author.includes(authorName)
+    );
+
+    setFilteredPosts(filteredData);
   };
 
   const searchPosts = (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:5000/api/post")
-      .then((res) => res.json())
-      .then((data) => {
-        const sortByRecent = sortPosts === "recent" ? data.reverse() : data;
-        const filteredData = sortByRecent.filter(
-          (post) =>
-            post.title.toLowerCase().includes(enteredWords) ||
-            post.content.toLowerCase().includes(enteredWords) ||
-            post.author.toLowerCase().includes(enteredWords)
-        );
-        setPosts(filteredData);
-      });
-
-    setEnteredWords("");
+    const sortedByRecent = sortByRecent(posts);
+    const filteredData = sortedByRecent.filter(
+      (post) =>
+        post.title.toLowerCase().includes(enteredWords) ||
+        post.content.toLowerCase().includes(enteredWords) ||
+        post.author.toLowerCase().includes(enteredWords)
+    );
+    setFilteredPosts(filteredData);
   };
 
   const sortPostByOption = (event) => {
     setSortPosts(event.target.value);
 
     if (event.target.value === "recent") {
-      setPosts(
-        posts.sort(function (a, b) {
+      setFilteredPosts((prevState) =>
+        prevState.sort((a, b) => {
           return b.postNumber - a.postNumber;
         })
       );
     }
+
     if (event.target.value === "older") {
-      setPosts(
-        posts.sort(function (b, a) {
+      setFilteredPosts((prevState) =>
+        prevState.sort((b, a) => {
           return b.postNumber - a.postNumber;
         })
       );
     }
   };
-
-  
 
   return (
     <Card pageName="Main">
@@ -117,31 +124,24 @@ const Main = () => {
         </div>
       </div>
       <div className="section">
-        <ul className="postList">
-          {posts.length === 0 && <p>등록된 데이터가 없습니다.</p>}
-          {posts.length > 0 &&
-            posts.map((post, index) => {
-              if (
-                (currentPage - 1) * limit <= index &&
-                currentPage * limit > index
-              ) {
-                return (
-                  <PostItem
-                    key={post.__id}
-                    post={post}
-                    onClickAuthorName={searchByAuthorName}
-                  />
-                );
-              }
-            })}
-        </ul>
+        {loading && <p>글을 불러오는 중입니다.</p>}
+        {error && <p>정보를 서버에서 읽어 올 수 없습니다</p>}
+        {filteredPosts.length === 0 && !error && !loading && (
+          <p>등록된 글이 없습니다</p>
+        )}
+        <PostList
+          currentPage={currentPage}
+          limit={limit}
+          posts={filteredPosts}
+          onSearchByAuthorName={searchByAuthorName}
+        ></PostList>
       </div>
       <div className="section footer">
         <div className="footerInner">
           <Button options={{ linkTo: "post/add" }}>글쓰기</Button>
           <Pagination
             limit={limit}
-            posts={posts}
+            posts={filteredPosts}
             currentPage={currentPage}
             onSetLimit={setLimit}
             onSetCurrentPage={setCurrentPage}

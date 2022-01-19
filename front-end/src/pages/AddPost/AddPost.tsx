@@ -9,18 +9,10 @@ import "./AddPost.scss";
 const AddPost = () => {
   const [titleInput, setTitleInput] = useState("");
   const [contentInput, setContentInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const userInfo = useRecoilValue(userInfoAtom);
   const navigate = useNavigate();
-
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      title: titleInput,
-      content: contentInput,
-      author: userInfo.username,
-    }),
-  };
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -29,22 +21,45 @@ const AddPost = () => {
       return alert("제목 혹은 내용이 비어있습니다!");
     }
 
-    fetch(`http://localhost:5000/api/post/`, requestOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.__id);
-        setTitleInput("");
-        setContentInput("");
-        alert("새로운 글이 생성되었습니다!");
-        navigate(`/post/${data.__id}`);
-      });
+    createPost();
+  };
+
+  const createPost = async () => {
+    try {
+      const requestOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          title: titleInput,
+          content: contentInput,
+          author: userInfo.username,
+        }),
+      };
+
+      const res = await fetch(
+        `http://localhost:5000/api/post/`,
+        requestOptions
+      );
+      const data = await res.json();
+
+      alert("새로운 글이 생성되었습니다!");
+      navigate(`/post/${data.__id}`);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+      setTitleInput("");
+      setContentInput("");
+    }
   };
 
   return (
     <form onSubmit={submitHandler}>
       <Card pageName="AddPost">
         <div className="section header">
-          <h2>글 추가하기</h2>
+          {!error && !loading && <h2>글 추가하기</h2>}
+          {loading && <div>글을 불러오는 중입니다</div>}
+          {error && <div>글을 불러올 수 없습니다</div>}
         </div>
         <div className="section">
           <div>

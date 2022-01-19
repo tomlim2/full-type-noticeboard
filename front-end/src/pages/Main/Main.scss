@@ -38,8 +38,8 @@
 
     .postList {
       display: grid;
-      grid-template-rows: repeat(5, 1fr);
-      gap: 10px;
+      grid-template-rows: auto;
+      gap: 20px;
       height: 100%;
       margin: 0;
       padding: 20px 10px;

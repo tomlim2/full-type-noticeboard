@@ -4,7 +4,7 @@ import Main from "./pages/Main/Main";
 import SinglePost from "./pages/SinglePost/SinglePost";
 import AddPost from "./pages/AddPost/AddPost";
 import UpdatePost from "./pages/UpdatePost/UpdatePost";
-import NotFound from "./pages/NotFound/NotFound";
+import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import UserInfo from "./components/UserInfo";
 
 const Router = () => {
@@ -16,7 +16,7 @@ const Router = () => {
         <Route path="post/add" element={<AddPost />} />
         <Route path="post/:id" element={<SinglePost />}></Route>
         <Route path="post/update/:id" element={<UpdatePost />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<ErrorPage status={404} />} />
       </Routes>
     </BrowserRouter>
   );

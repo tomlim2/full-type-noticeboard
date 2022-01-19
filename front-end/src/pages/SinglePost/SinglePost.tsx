@@ -7,27 +7,47 @@ import "./SinglePost.scss";
 
 const SinglePost = () => {
   const [post, setPost] = useState<Post>();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const path =
     location.pathname.split("/")[location.pathname.split("/").length - 1];
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/post/${path}`)
-      .then((res) => res.json())
-      .then((data) => {
-        setPost(data);
-      })
-      .catch(() => navigate("/404"));
+    getSinglePost(path);
   }, []);
 
-  const deletePost = () => {
-    fetch(`http://localhost:5000/api/post/${path}`, { method: "DELETE" })
-      .then(() => alert("해당 글이 삭제되었습니다!"))
-      .then(() => navigate("/"));
+  const getSinglePost = async (pathParams: string) => {
+    setLoading(true);
+
+    try {
+      const res = await fetch(`http://localhost:5000/api/post/${pathParams}`);
+      const data = await res.json();
+      setPost(data);
+    } catch (error) {
+      setError(true);
+      navigate("/404");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const formatDate = (date) => {
+  const deletePost = async () => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/post/${path}`, {
+        method: "DELETE",
+      });
+      if (res) {
+        alert("해당 글이 삭제되었습니다!");
+        navigate("/");
+      }
+    } catch (error) {
+      alert("삭제 요청이 실패하였습니다. 잠시 후에 다시 시도해 주세요!");
+    }
+  };
+
+  const formatDate = (date: string) => {
     const getDate = new Date(date);
     return (
       getDate.getFullYear() +
@@ -44,6 +64,8 @@ const SinglePost = () => {
         <div>
           제목
           <h1>{post && post.title}</h1>
+          {loading && <div>"글을 불러오는 중입니다"</div>}
+          {error && <div>"글을 불러올 수 없습니다"</div>}
         </div>
       </div>
       <div className="section body">
