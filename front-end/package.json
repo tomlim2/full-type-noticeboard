@@ -1,15 +1,22 @@
 {
-  "name": "second",
+  "name": "zum-board-assignment",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "줌 게시판 프로젝트",
+  "main": "index.tsx",
   "scripts": {
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev --open --history-api-fallback",
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "react",
+    "typescript",
+    "assignment",
+    "node-js",
+    "express-js",
+    "webpack5"
+  ],
+  "author": "Younsoo Lim",
   "license": "ISC",
   "dependencies": {
     "@babel/core": "^7.16.7",
