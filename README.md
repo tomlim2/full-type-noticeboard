@@ -1,49 +1,20 @@
-# 줌 프론트엔드 사전 과제
+# 프론트엔드 게시판 프로젝트
 
 마지막 업데이트: 2021-01-19
 
-## 0. 실행방법
+## 1.기술스택
 
-back-end 폴더에서
-
-```text
-./back-end
-
-npm install
-npm start
-```
-
-front-end 폴더에서
-
-```text
-./front-end
-
-npm install
-npm run start
-```
-
-### build
-
-프론트 엔드 프러덕션 빌드 커멘드는 front-end 폴더에 가서
-
-```text
-./front-end
-
-npm run build
-```
-
-## 1. 기술스택
-
-- vanilla javascript
-- typescript
+- frontend
+  - react
+  - typescript
   - `recoil`
-- bundler
   - `webpack`
 - backend
   - `node.js`
+  - typescript
   - `express.js`
 
-## 2. 구현기능 목록
+## 2.구현기능 목록
 
 ### (1) 게시글 목록
 
@@ -109,6 +80,33 @@ npm run build
 
 - recoil을 사용하여 구현하였습니다.
 
-## 마무리
 
-- 본 프로젝트는 과제 제출용도입니다.
+## 3.실행방법
+
+back-end 폴더에서
+
+```text
+./back-end
+
+npm install
+npm start
+```
+
+front-end 폴더에서
+
+```text
+./front-end
+
+npm install
+npm run start
+```
+
+### build
+
+프론트 엔드 프러덕션 빌드 커멘드는 front-end 폴더에 가서
+
+```text
+./front-end
+
+npm run build
+```
